@@ -31,7 +31,6 @@ module pcileech_pcie_a7(
     IfPCIeFifoTlp.mp_pcie   dfifo_tlp,
     IfPCIeFifoCore.mp_pcie  dfifo_pcie,
     IfShadow2Fifo.shadow    dshadow2fifo,
-    input wire cfg_interrupt_msienable
     );
        
     // ----------------------------------------------------------------------------
