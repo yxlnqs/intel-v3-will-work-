@@ -19,13 +19,10 @@ module pcileech_pcie_cfg_a7(
     IfAXIS128.source        tlps_static,
     output [15:0]           pcie_id,
     output wire [31:0]      base_address_register,
-    input wire              cfg_interrupt_msienable 
+
     );
 
-	    // New declarations for interrupt handling
-    reg [31:0] interrupt_counter;
-    localparam INTERRUPT_INTERVAL = 1000000; // Adjust as needed
-    reg interrupt_pulse;
+
 
     // ----------------------------------------------------
     // TickCount64
@@ -349,37 +346,7 @@ module pcileech_pcie_cfg_a7(
     always @ ( posedge clk_pcie )
        if ( rst ) begin
             pcileech_pcie_cfg_a7_initialvalues();
-            interrupt_counter <= 0;
-            interrupt_pulse <= 1'b0;
-        end else begin
-            // Generate interrupt pulse
-            if (interrupt_counter == 0) begin
-                interrupt_pulse <= 1'b1;
-            end else begin
-                interrupt_pulse <= 1'b0;
-            end
 
-            // Interrupt counter
-            if (interrupt_counter < INTERRUPT_INTERVAL) begin
-                interrupt_counter <= interrupt_counter + 1;
-            end else begin
-                interrupt_counter <= 0;
-            end
-
-            // Handle MSI
-            if (ctx.cfg_interrupt_msienable && interrupt_pulse) begin
-                rw[206] <= 1'b1;  // cfg_interrupt
-                rw[205] <= 1'b1;  // cfg_interrupt_assert
-                rw[199:192] <= 16'h49A1 // full Message data : ) 
-            end
-
-            // Clear interrupt when acknowledged
-            if (ctx.cfg_interrupt_rdy) begin
-                rw[206] <= 1'b0;  // cfg_interrupt
-                rw[205] <= 1'b0;  // cfg_interrupt_assert
-            end
-
-            // Existing logic
             // READ config
             out_wren <= in_cmd_read;
             if ( in_cmd_read ) begin
