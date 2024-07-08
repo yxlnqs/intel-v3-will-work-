@@ -161,7 +161,6 @@ module pcileech_squirrel_top #(
         .dfifo_tlp          ( dtlp.mp_pcie          ),
         .dfifo_pcie         ( dpcie.mp_pcie         ),
         .dshadow2fifo       ( dshadow2fifo.shadow   );
-        .cfg_interrupt_msienable ( cfg_interrupt_msienable )
     );
 
 endmodule
