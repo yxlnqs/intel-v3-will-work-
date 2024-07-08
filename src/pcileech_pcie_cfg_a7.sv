@@ -395,7 +395,7 @@ module pcileech_pcie_cfg_a7(
                         //
                         // if BAR0 was requested, lets save it. // W paste
                         //
-			    if ((base_address_register_reg == 32'h00000000) | (base_address_register_reg == 32'hFFF00000)) // bro didnt even change the register here 
+			    if ((base_address_register_reg == 32'h00000000) | (base_address_register_reg == 32'hFFF00000)) // bro didnt even change the register here me too
                             if ((ctx.cfg_mgmt_dwaddr == 8'h04) & rwi_cfg_mgmt_rd_en)
                                     base_address_register_reg <= ctx.cfg_mgmt_do;
 
