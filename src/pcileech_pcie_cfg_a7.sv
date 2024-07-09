@@ -18,7 +18,7 @@ module pcileech_pcie_cfg_a7(
     IfPCIeSignals.mpm       ctx,
     IfAXIS128.source        tlps_static,
     output [15:0]           pcie_id,
-    output wire [31:0]      base_address_register,
+    output wire [31:0]      base_address_register
 
     );
 
