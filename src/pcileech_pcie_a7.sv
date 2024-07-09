@@ -30,7 +30,7 @@ module pcileech_pcie_a7(
     IfPCIeFifoCfg.mp_pcie   dfifo_cfg,
     IfPCIeFifoTlp.mp_pcie   dfifo_tlp,
     IfPCIeFifoCore.mp_pcie  dfifo_pcie,
-    IfShadow2Fifo.shadow    dshadow2fifo,
+    IfShadow2Fifo.shadow    dshadow2fifo
     );
        
     // ----------------------------------------------------------------------------
